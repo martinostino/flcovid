@@ -19,14 +19,6 @@ myfile.close()
 #print(num_pos)
 #print(rate_pos)
 
-#Calulations
-#myarray = np.column_stack((date,num_pos,rate_pos))
-#mylist = list(zip(date,num_pos,rate_pos)) #date = myarray[i][0], num = [1], rate = [2]
-#print(mylist) #myarray
-
-#aMax = max(num_pos)
-#loc = num_pos.index(max(num_pos)) #location
-#print(aMax,loc)
 
 #7-Day Moving Average Calculations:
 ave_num = [None,None,None,None,None,None]
@@ -46,6 +38,24 @@ mov_ave_list2 = mov_ave2.tolist()
 without_nans2 = mov_ave_list2[7-1:]
 for each in without_nans2:
 	ave_rate.append(each)
+
+#Calculations
+max_loc = num_pos.index(max(num_pos)) #location
+print(max_loc)
+weight_list = []
+tot_val = num_pos[max_loc]/(rate_pos[max_loc]/100)
+for each in rate_pos:
+	aweight = (each/100)*tot_val
+	weight_list.append(aweight)
+
+ave_weight = [None,None,None,None,None,None]
+aseries3 = pd.Series(weight_list)
+windows3 = aseries3.rolling(7)
+mov_ave3 = windows3.mean()
+mov_ave_list3 = mov_ave3.tolist()
+without_nans3 = mov_ave_list3[7-1:]
+for each in without_nans3:
+	ave_weight.append(each)
 
 
 #make plots
@@ -82,5 +92,22 @@ color = 'red'
 ax4.set_ylabel('Postive Rate', color=color)
 ax4.plot(date, ave_rate, color=color)
 ax4.tick_params(axis='y', labelcolor=color)
+fig.tight_layout()
+plt.show()
+
+#Weighted
+fig, ax5 = plt.subplots()
+color = "blue"
+ax5.set_xlabel('date')
+for tick in ax5.get_xticklabels():
+    tick.set_rotation(45)
+ax5.set_ylabel('Weighted Positive Cases', color=color)
+ax5.plot(date, weight_list, color=color)
+ax5.tick_params(axis='y', labelcolor=color)
+ax6 = ax5.twinx()
+color = 'red'
+ax6.set_ylabel('Weighted (7-Day Moving Average', color=color)
+ax6.plot(date, ave_weight, color=color)
+ax6.tick_params(axis='y', labelcolor=color)
 fig.tight_layout()
 plt.show()
