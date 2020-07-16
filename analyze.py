@@ -41,7 +41,7 @@ for each in without_nans2:
 
 #Calculations
 max_loc = num_pos.index(max(num_pos)) #location
-print(max_loc)
+#print(max_loc)
 weight_list = []
 tot_val = num_pos[max_loc]/(rate_pos[max_loc]/100)
 for each in rate_pos:
@@ -76,7 +76,7 @@ ax2.plot(date, rate_pos, color=color)
 #ax2.plot(date, ave_rate, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
 fig.tight_layout()
-plt.show()
+#plt.show()
 
 #7-Day Rolling Average
 fig,ax3 = plt.subplots()
@@ -93,7 +93,7 @@ ax4.set_ylabel('Postive Rate', color=color)
 ax4.plot(date, ave_rate, color=color)
 ax4.tick_params(axis='y', labelcolor=color)
 fig.tight_layout()
-plt.show()
+#plt.show()
 
 #Weighted
 fig, ax5 = plt.subplots()
@@ -102,12 +102,11 @@ ax5.set_xlabel('date')
 for tick in ax5.get_xticklabels():
     tick.set_rotation(45)
 ax5.set_ylabel('Weighted Positive Cases', color=color)
-ax5.plot(date, weight_list, color=color)
+ax5.plot(date, weight_list, color=color, label="Number of 'Real' Cases")
 ax5.tick_params(axis='y', labelcolor=color)
-ax6 = ax5.twinx()
+#ax6 = ax5.twinx()
 color = 'red'
-ax6.set_ylabel('Weighted (7-Day Moving Average', color=color)
-ax6.plot(date, ave_weight, color=color)
-ax6.tick_params(axis='y', labelcolor=color)
+ax5.plot(date,ave_weight,color=color, label="7-Day Moving Average")
+ax5.legend(loc = "upper left")
 fig.tight_layout()
 plt.show()
