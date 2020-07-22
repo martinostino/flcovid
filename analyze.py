@@ -3,7 +3,11 @@ import numpy as np
 import pandas as pd
 
 #get data
-myfile = open("fl_dat.csv","r")
+inp = input("Do you want FL or Hillsborough data? (type f or h)")
+if inp == "f":
+	myfile = open("fl_dat.csv","r")
+if inp == "h":
+	myfile = open("hills.csv","r")
 header = myfile.readline()
 everything = myfile.readlines()
 date = []

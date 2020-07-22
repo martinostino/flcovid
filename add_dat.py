@@ -1,7 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-myfile = open("fl_dat.csv","a")
+inp = input("Do you want FL or Hillsborough data? (type f or h)")
+if inp == "f":
+	myfile = open("fl_dat.csv","a")
+if inp == "h":
+	myfile = open("hills.csv","a")
 #everything = myfile.readlines()
 
 date = input("What is the date? (mm-dd)")
