@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-inp = input("Do you want FL or Hillsborough data? (type f or h)")
+inp = input("Do you want FL, Hillsborough, or Alachua data? (type f, h, or a)")
 if inp == "f":
 	myfile = open("fl_dat.csv","a")
 if inp == "h":
 	myfile = open("hills.csv","a")
+if inp == "a":
+	myfile = open("alachua.csv","a")
 #everything = myfile.readlines()
 
 date = input("What is the date? (mm-dd)")
