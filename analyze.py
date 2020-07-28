@@ -81,6 +81,7 @@ ax2.set_ylabel('Postive Rate', color=color)
 ax2.plot(date, rate_pos, color=color)
 #ax2.plot(date, ave_rate, color=color)
 ax2.tick_params(axis='y', labelcolor=color)
+ax1.xaxis.set_major_locator(plt.MaxNLocator(25))
 fig.tight_layout()
 #plt.show()
 
@@ -98,6 +99,7 @@ color = 'red'
 ax4.set_ylabel('Postive Rate', color=color)
 ax4.plot(date, ave_rate, color=color)
 ax4.tick_params(axis='y', labelcolor=color)
+ax3.xaxis.set_major_locator(plt.MaxNLocator(25))
 fig.tight_layout()
 #plt.show()
 
@@ -114,5 +116,6 @@ ax5.tick_params(axis='y', labelcolor=color)
 color = 'red'
 ax5.plot(date,ave_weight,color=color, label="7-Day Moving Average")
 ax5.legend(loc = "upper left")
+ax5.xaxis.set_major_locator(plt.MaxNLocator(25))
 fig.tight_layout()
 plt.show()
